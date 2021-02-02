@@ -9,7 +9,9 @@ var path = require('path');
 var server = http.createServer(function (request, response)
 {
   var pathname = url.parse(request.url).pathname;
-  var realPath = path.join("./public", pathname);
+  console.log(pathname);
+  var realPath = path.join("./public", pathname === "/" ? "index.html" : pathname);
+  console.log(realPath);
   //console.log(realPath);
   var ext = path.extname(realPath);
   ext = ext ? ext.slice(1) : 'unknown';
@@ -21,7 +23,7 @@ var server = http.createServer(function (request, response)
         'Content-Type': 'text/plain'
       });
 
-      response.write(JSON.stringify("This request URL " + pathname + " was not found on this server."));
+      response.write("This request URL " + pathname + " was not found on this server.");
       response.end();
     } else
     {
@@ -32,14 +34,14 @@ var server = http.createServer(function (request, response)
           response.writeHead(500, {
             'Content-Type': 'text/plain'
           });
-          response.end(err);
+          response.end(JSON.stringify(err));
         } else
         {
           var contentType = types[ext] || "text/plain";
           response.writeHead(200, {
             'Content-Type': contentType
           });
-          response.write(JSON.stringify(file));
+          response.write(file, "binary");
           response.end();
         }
       });
