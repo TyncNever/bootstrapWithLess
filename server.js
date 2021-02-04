@@ -10,7 +10,7 @@ var server = http.createServer(function (request, response)
 {
   var pathname = url.parse(request.url).pathname;
   console.log(pathname);
-  var realPath = path.join("./public", pathname === "/" ? "index.html" : pathname);
+  var realPath = path.join("./public", pathname === "/" ? "/index.html" : pathname);
   console.log(realPath);
   //console.log(realPath);
   var ext = path.extname(realPath);

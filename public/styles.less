@@ -1,3 +1,5 @@
+@main-bg: #f6f6f6;
+
 .flex-layout(@justify: center; @align: center; @wrap: nowrap; ) {
   display: flex;
   justify-content: @justify;
@@ -5,8 +7,15 @@
   flex-wrap: @wrap;
 }
 
+* {
+  border: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .navbar {
-  background-color: #f6f6f6;
+  background-color: @main-bg;
 
   .logo {
     width: 30px;
@@ -21,21 +30,69 @@
 }
 
 .banner {
-  .group {
+  background: @main-bg;
+
+  .banner-text {
+    .flex-layout(@wrap: wrap; );
+    width: 320px;
+    padding: 0 15px;
+
+    .line {
+      width: 100%;
+    }
+
+    .main {
+      font-weight: 600;
+      font-size: 48px;
+    }
+
+    .sub {
+      font-size: 30px;
+      margin-bottom: 24px;
+    }
+
+    .download_button {
+      width: 100%;
+      margin-bottom: 24px;
+      padding: 0 30px;
+      display: inline-block;
+      max-width: 300px;
+      line-height: 72px;
+      background: #0F62FE;
+      text-align: center;
+      font-size: 24px;
+      text-decoration: none;
+      color: #fff;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    .cap {
+      font-size: 12px;
+      color: #333;
+      opacity: .5;
+    }
+  }
+
+  .image {
     .flex-layout();
-    padding: 0 10%;
+  }
+}
 
-    @media (max-width: 720px) {
-      padding: 0 20%;
-      flex-wrap: wrap;
+.anchors {
+  .flex-layout(@wrap: wrap; );
 
-      .right {
-        width: 100%;
-      }
+  .card {
+    border: none;
+    width: 20%;
+    max-width: 240px;
+    min-width: 160px;
+    text-align: center;
+    padding-top: 30px;
 
-      .left {
-        width: 100%;
-      }
+    >img {
+      width: 72px;
+      margin: 0 auto;
     }
   }
 }
